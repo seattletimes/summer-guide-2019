@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Safari, you're the worst -->
+    <meta name='format-detection' content='telephone=no'>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body>
+
+    <%= t.include("partials/_nav.html") %>
+
+    <%= t.include("partials/_ad.html", { type: "banner" }) %>
+
+    <header class="top">
+      <h1><img src="./assets/header.jpg" alt="Seattle Times Summer Guide"></h1>
+
+      <p>
+        Planning out your summer? Use this interactive guide to find activities around Seattle, May through August 2019, from festivals to pool time to Fourth of July activities. For more summer fun, check out the rest of our <a href="http://www.seattletimes.com/category/summer-guide/">summer guide package</a>.
+    </header>
+
+    <main class="table-container">
+
+      <nav class="filters">
+        <div>
+          <h2 class="nav-header">Choose categories</h2>
+          <% var cats = [
+            { data: "arts", label: "Arts, Exhibits &amp; Expos" },
+            { data: "holiday", label: "Fourth of July" },
+            { data: "outdoors", label: "Outdoors" },
+            { data: "aquatic", label: "Aquatic Activities" },
+            { data: "festivals", label: "Festivals & Parades" },
+            { data: "food", label: "Food & Drink" },
+            { data: "music", label: "Music" },
+            { data: "market", label: "Farmers Market" },
+          ] %>
+          <ul class="categories">
+            <% cats.forEach(function(cat) { %>
+            <li>
+              <input type="checkbox" data-category="<%= cat.data %>" id="<%= cat.data %>" checked="checked">
+              <label for="<%= cat.data %>"><%= cat.label %></label>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+
+      <!-- month filter -->
+
+        <div>
+          <h2 class="nav-header">Choose a month</h2>
+          <% var meses = [
+            { data: "may", label: "May" },
+            { data: "june", label: "June" },
+            { data: "july", label: "July" },
+            { data: "aug", label: "August" },
+            { data: "sept", label: "September" },
+          ] %>
+          <ul class="meses">
+            <% meses.forEach(function(mes) { %>
+            <li>
+              <input type="checkbox" data-month="<%= mes.data %>" id="<%= mes.data %>">
+              <label for="<%= mes.data %>"><%= mes.label %></label>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      <!-- end month filter -->
+
+        <div class="advanced">
+          <input type="text" placeholder="Search events" class="search">
+          <input type="checkbox" class="editors" id="editors">
+        </div>
+      </nav>
+
+      <table class="summer-events">
+        <thead>
+          <tr>
+            <th class="category">
+            <th class="date">Date
+            <th class="event">Event
+            <th class="location">Location
+            <th class="description">Description
+        <tbody class="events">
+          <% var icons = {
+            arts: "arts-exhibits",
+            holiday: "fourth-of-july",
+            outdoors: "outdoors",
+            aquatic: "aquatic",
+            festivals: "festivals-parades",
+            food: "food-drink",
+            music: "music",
+            market: "music"
+          } %>
+          
+          <% json.guide.forEach(function(item) { %>
+          <tr
+            data-category="<%= item.className %>"
+            data-start="<%= item.start %>"
+            data-end="<%= item.end %>"
+          >
+
+            <td class="category">
+              <%
+                var thumbnail = icons[item.className];
+              %>
+
+              <img src="./assets/icons/<%= thumbnail %>.jpg" 
+                alt="<%= item.category %>"
+                title="<%= item.category %>"
+              >
+            </td>
+            <td class="date"><%= item.dates %>
+            <td class="event">
+              <% if (item.website) { %>
+              <a href="<%= item.website %>">
+              <% } %>
+              <%= item.event %>
+              <% if (item.website) { %>
+              </a>
+              <% } %>
+            <td class="location"><%= item.location %>
+            <td class="description">
+              <%= item.info %>
+              <% if (item.phone) { %>
+              <div class="phone">Call for info: <%= item.phone %></div>
+              <% } %>
+          <% }) %>
+        <tbody class="emptied">
+          <tr>
+            <td colspan="99">No results found</td>
+      </table>
+      <div class="credits">
+        Originally published: May 19, 2019
+      </div>
+
+      <div class="bylines">
+        Illustrations by Gabriel Campanario
+        <div>Developed by Emily M. Eng</div>
+        <div>Research by Madeline McKenzie and Yasmeen Wafai</div>
+        <div>Additional assistance from Stefanie Loh and Amy Wong</div>
+      </div>
+    </main>
+
+    <%= t.include("partials/_dontMiss.html", { data: [{
+      link: "http://www.seattletimes.com/life/travel/new-in-town-10-dos-and-donts-for-your-seattle-summer/",
+      head: "New in town? 10 do’s and don’ts for your Seattle summer",
+      image: "teasers/teaser_new.jpg"
+    }, {
+      link: "http://www.seattletimes.com/life/travel/my-seattle-summer-to-do-list-madeline-mckenzie/",
+      head: "5 things you can only do around Seattle in the summer",
+      image: "teasers/teaser_fivethings.jpg"
+    }, {
+      link: "http://www.seattletimes.com/life/travel/my-seattle-summer-to-do-list-tan-vinh/",
+      head: "A Seattle summer drinking to-do list",
+      image: "teasers/teaser_drinks.jpg"
+    }, {
+      link: "http://www.seattletimes.com/life/travel/your-guide-to-the-seattle-areas-summer-farmers-markets/",
+      head: "Your guide to the Seattle area’s summer farmers markets",
+      image: "teasers/teaser_markets.jpg"
+    }]}) %>
+
+    <%= t.include("partials/_navBottom.html") %>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>

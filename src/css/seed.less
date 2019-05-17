@@ -1,0 +1,243 @@
+@import "seattletimes";
+
+body {
+  font-size: 16px;
+}
+
+header.top {
+  max-width: 960px;
+  margin: auto;
+  padding: 0 16px;
+}
+
+main.table-container {
+  max-width: 960px;
+  padding: 0 16px 40px;
+  margin: auto;
+}
+
+.jump-to-today {
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  padding-top: 16px;
+  font-size: 13px;
+  text-transform: uppercase;
+
+  &::before, &::after {
+    content: "▼";
+    margin: 0 6px;
+  }
+}
+
+.filters {
+  font-family: @df-sans;
+  padding-bottom: 20px;
+
+  .nav-header {
+    font-weight: normal;
+    color: @df-middle-gray;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .search {
+    border: 1px solid @df-middle-gray;
+    padding: 4px 8px;
+    width: 200px;
+  }
+
+  .advanced {
+    .display-flex;
+    .justify-content(center);
+    .align-items(stretch);
+
+    input {
+      margin: 0 20px 0 0;
+    }
+
+    label[for="editors"] {
+      margin: 0;
+    }
+  }
+
+  .categories {
+    padding: 8px 0;
+    margin: 0;
+    list-style-type: none;
+    display: block;
+    text-align: center;
+
+    label {
+      display: block;
+    }
+  }
+
+  .meses {
+    padding: 8px 0;
+    margin: 0;
+    list-style-type: none;
+    display: block;
+    text-align: center;
+
+    label {
+      display: block;
+    }    
+  }
+
+  input[type=checkbox] {
+    display: none;
+
+    & + label {
+      padding: 2px 8px;
+      border: 1px solid @df-light-gray;
+      color: @df-middle-gray;
+      border-radius: 2px;
+      cursor: pointer;
+      margin: 2px;
+      font-size: 14px;
+
+      &::before {
+        content: "";
+      }
+    }
+
+    &:checked + label {
+      border: 1px solid @df-dark-gray;
+      color: @df-dark-gray;
+
+      &::before {
+        content: "✓";
+        margin-right: 6px;
+      }
+    }
+  }
+
+  li {
+    display: inline-block;
+  }
+}
+
+.summer-events {
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+  font-size: 15px;
+  font-family: @df-sans;
+
+  @media @mobile {
+    &, tbody, tr, th, td {
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+  }
+
+  tbody {
+    width: 100%;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  td {
+    @media @not-mobile {
+      border-bottom: 1px solid @df-light-gray;
+      padding: 8px 16px 8px 0;
+    }
+    vertical-align: top;
+    padding: 0px 16px 0px 0;
+
+    &.description {
+      padding-top: 8px;
+    }
+
+    &.event {
+      font-weight: bold;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media @not-mobile {
+
+    .category {
+      width: 100px;
+      padding: 16px;
+    }
+
+    .date {
+      min-width: 75px;
+    }
+
+    .location {
+      min-width: 200px;
+    }
+
+    .description {
+      max-width: 33%;
+    }
+  }
+
+  @media @mobile {
+    .category {
+      float: right;
+      max-width: 75px;
+    }
+
+    tr {
+      border-top: 1px solid @df-light-gray;
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+
+    .date .start, .date .end {
+      font-weight: bold;
+    }
+  }
+
+  .emptied {
+    display: none;
+    text-align: center;
+    background: @df-light-gray;
+
+    td {
+      padding: 20px;
+    }
+
+    .empty& {
+      display: table-row-group;
+    }
+  }
+
+  .editors-pick {
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: @st-dark-red;
+  }
+
+}
+
+.credits {
+  text-align: right;
+  color: @df-middle-gray;
+  font-family: @df-sans;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+
+.bylines{
+  font-family: @df-sans;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 15px;
+}
