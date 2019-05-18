@@ -1,44 +1,79 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title><%= grunt.data.json.project.title %></title>
+<title><%= project.title %></title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="http://apps-production.s3.amazonaws.com/static/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="https://apps-production.s3.amazonaws.com/static/images/favicon.ico" type="image/x-icon">
 
+<% if (!project.embedded) { %>
 <!-- BEGIN TWITTER SUMMARY CARD -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="<%= grunt.data.json.project.title %>">
+<meta name="twitter:title" content="<%= project.title %>">
 <meta name="twitter:site" content="@seattletimes">
-<meta name="twitter:url" content="<%= grunt.data.json.project.url %>">
-<meta name="twitter:image" content="<%= grunt.data.json.project.url + grunt.data.json.project.image %>">
-<meta name="twitter:description" content="<%= grunt.data.json.project.description %>">
+<meta name="twitter:url" content="<%= project.url %>">
+<meta name="twitter:image" content="<%= project.url + project.image %>">
+<meta name="twitter:description" content="<%= project.description %>">
 
 <!-- Social sharing meta -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="<%= grunt.data.json.project.title %>">
+<meta property="og:title" content="<%= project.title %>">
 <meta property="og:site_name" content="The Seattle Times">
-<meta property="og:url" content="<%= grunt.data.json.project.url %>">
-<meta property="og:image" content="<%= grunt.data.json.project.url + grunt.data.json.project.image %>">
-<meta property="og:description" content="<%= grunt.data.json.project.description %>">
+<meta property="og:url" content="<%= project.url %>">
+<meta property="og:image" content="<%= project.url + project.image %>">
+<meta property="og:description" content="<%= project.description %>">
 <meta property="fb:app_id" content="225286600856790"/>
 
-<% if (grunt.data.json.project.standout) { %>
-<meta name="standout" content="<%= grunt.data.json.project.url %>">
+<!-- Google structured data -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "<%= project.url %>"
+  },
+  "headline": "<%= project.title %>",
+  "image": {
+    "@type": "ImageObject",
+    "url": "<%= project.url + project.image %>"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Seattle Times Staff"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Seattle Times",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "<%= project.url %>assets/logo.jpg",
+      "width": 1000,
+      "height": 147
+    }
+  },
+  "description": "<%= project.description %>"
+}
+</script>
+
+<% if (project.standout) { %>
+<meta name="standout" content="<%= project.url %>">
+<% } %>
+
+<!-- Chartbeat top -->
+<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
 <% } %>
 
 <!-- Safari, you're the worst -->
 <meta name='format-detection' content='telephone=no'>
-
-<!-- Chartbeat top -->
-<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 
 <!-- start ad set-up -->
 <script>
 window.googletag = {
   cmd: [],
   seatimes: {
-    tags: <%= JSON.stringify(grunt.data.json.project.tags || []) %>,
+    tags: <%= JSON.stringify(project.tags || []) %>,
     unit: "/81279359/seattletimes.com"
   }
 };
@@ -55,3 +90,36 @@ var config = {
 h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
 })(document);
 </script>
+
+<script type='text/javascript'>
+dataLayer = [{
+"timestamp":1546460003,
+"contentType":"story",
+"canonicalURL":"https:\/\/projects.seattletimes.com\/2018\/teacher-diversity-wa\/",
+"domain":"www.seattletimes.com",
+"post_id":11152084,
+"author":"Dahlia Bazzaz Katie Gillespie",
+"publishdate":"2018-12-14 5:00:00",
+"title":"Teacher diversity in Washington state",
+"credit":"Seattle Times staff reporter",
+"source":"ST-Projects",
+"meter":"on",
+"ads":"on",
+"allowComments":"off",
+"section_tier1":"local",
+"section_tier2":"education",
+"sections_all":"local | northwest",
+"othersections":"education lab",
+"internalTags":"projects",
+"hasVisuals": true,
+"videos": 0,
+}];
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDZ92J');</script>
+<!-- End Google Tag Manager -->

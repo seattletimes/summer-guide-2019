@@ -1,6 +1,8 @@
-require("./lib/social");
 require("./lib/ads");
-// var track = require("./lib/tracking");
+var paywall = require("./lib/paywall");
+setTimeout(() => paywall(11595997), 3000);
+
+var track = require("./lib/tracking");
 
 var $ = require("./lib/qsa");
 var debounce = require("./lib/debounce");

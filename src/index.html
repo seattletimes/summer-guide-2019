@@ -1,25 +1,25 @@
 <!doctype html>
 <html>
   <head>
+    <meta property="og:image" content="https://projects.seattletimes.com/2019/summer-guide/assets/social.jpg" />
     <title><%= json.project.title %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- Safari, you're the worst -->
     <meta name='format-detection' content='telephone=no'>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <%= t.include("partials/_head.html") %>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
   </head>
   <body>
-
+    <%= t.include("partials/_gtm.html") %>
     <%= t.include("partials/_nav.html") %>
-
     <%= t.include("partials/_ad.html", { type: "banner" }) %>
 
     <header class="top">
       <h1><img src="./assets/header.jpg" alt="Seattle Times Summer Guide"></h1>
 
       <p>
-        Planning out your summer? Use this interactive guide to find activities around Seattle, May through August 2019, from festivals to pool time to Fourth of July activities. For more summer fun, check out the rest of our <a href="http://www.seattletimes.com/category/summer-guide/">summer guide package</a>.
+        Planning out your summer? Use this interactive guide to find activities around Seattle, May through August 2019, from festivals to pool time to Fourth of July activities. For more summer fun, check out the rest of our <a href="https://www.seattletimes.com/category/summer-guide/">summer guide package</a>.
     </header>
 
     <main class="table-container">
@@ -139,34 +139,34 @@
       <div class="bylines">
         Illustrations by Gabriel Campanario
         <div>Developed by Emily M. Eng</div>
-        <div>Research by Madeline McKenzie and Yasmeen Wafai</div>
+        <div>Research by Madeline McKenzie, Lori Taki-Uno and Yasmeen Wafai</div>
         <div>Additional assistance from Stefanie Loh and Amy Wong</div>
       </div>
     </main>
 
     <%= t.include("partials/_dontMiss.html", { data: [{
-      link: "http://www.seattletimes.com/life/travel/new-in-town-10-dos-and-donts-for-your-seattle-summer/",
-      head: "New in town? 10 do’s and don’ts for your Seattle summer",
-      image: "teasers/teaser_new.jpg"
+      link: "https://www.seattletimes.com/life/food-drink/rooftop-bars-are-all-the-rage-in-seattle-we-rated-the-4-newest-ones-for-your-summer-enjoyment/",
+      head: "Rooftop bars are all the rage in Seattle",
+      image: "teasers/teaser-rooftop.jpg"
     }, {
-      link: "http://www.seattletimes.com/life/travel/my-seattle-summer-to-do-list-madeline-mckenzie/",
-      head: "5 things you can only do around Seattle in the summer",
-      image: "teasers/teaser_fivethings.jpg"
+      link: "https://www.seattletimes.com/life/outdoors/seattles-not-just-the-countrys-most-bike-friendly-city-its-a-biking-community-here-are-the-reasons-we-ride/",
+      head: "Biking in Seattle is a way of life. Here’s a look at our deep-rooted bike culture",
+      image: "teasers/teaser-bike.jpg"
     }, {
-      link: "http://www.seattletimes.com/life/travel/my-seattle-summer-to-do-list-tan-vinh/",
-      head: "A Seattle summer drinking to-do list",
-      image: "teasers/teaser_drinks.jpg"
+      link: "https://www.seattletimes.com/entertainment/music/washingtons-best-outdoor-summer-concerts-and-festivals-2019/",
+      head: "Washington’s best outdoor summer concerts and festivals 2019",
+      image: "teasers/teaser-festival.jpg"
     }, {
-      link: "http://www.seattletimes.com/life/travel/your-guide-to-the-seattle-areas-summer-farmers-markets/",
-      head: "Your guide to the Seattle area’s summer farmers markets",
-      image: "teasers/teaser_markets.jpg"
+      link: "https://www.seattletimes.com/life/outdoors/how-to-entertain-your-kids-in-seattle-this-summer-here-are-some-free-and-low-cost-ideas/",
+      head: "Free and cheap ways to entertain your kids in the Seattle area this summer",
+      image: "teasers/teaser-summerkids.jpg"
     }]}) %>
 
     <%= t.include("partials/_navBottom.html") %>
 
     <script src="app.js" async></script>
     <% if (json.project.production) { %>
-    <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
     <%= t.include("partials/_workHere.html") %>
     <% } %>
   </body>
