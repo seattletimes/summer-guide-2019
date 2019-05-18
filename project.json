@@ -14,7 +14,7 @@
   "url": "https://projects.seattletimes.com/2019/summer-guide/",
   "image": "assets/social.jpg",
   "sheets": ["1UDW7jSYakROSVjyxEPe8jklrjFWDuhH1hpDfDg2_uGg"],
-  "production": false,
+  "production": true,
   "embedded": false,
   "standout": true
 }
