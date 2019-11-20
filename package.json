@@ -8,7 +8,7 @@
     "url": "https://github.com/seattletimes/fall-arts-2016.git"
   },
   "dependencies": {
-    "angular": "^1.5.8",
+    "angular": "^1.7.9",
     "async": "^2.0.0-rc.1",
     "aws-sdk": "^2.2.45",
     "babelify": "^6.0.2",
